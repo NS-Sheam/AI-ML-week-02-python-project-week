@@ -25,9 +25,35 @@ with st.sidebar:
     st.header("Select difficulty level")
     selected_option = st.selectbox("Difficulty Level", options=["Easy", "Medium", "Hard"], key="difficulty", index = None)
 
-    if selected_option:
-        st.markdown(f"You have selected **{selected_option}** difficulty level.")
-    else:
-        st.warning("Please select a difficulty level.")
+    # if selected_option:
+    #     st.markdown(f"You have selected **{selected_option}** difficulty level.")
+    # else:
+    #     st.warning("Please select a difficulty level.")
 
-    st.button("Generate Note Summery and Quiz", key="generate_button", type="primary")
+    pressed = st.button("Generate Note Summery and Quiz", key="generate_button", type="primary")
+
+
+if pressed:
+    if not images:
+        st.error("Please upload at least one image to generate note summery and quiz.")
+    elif not selected_option:
+        st.error("Please select a difficulty level to generate note summery and quiz.")
+    else:
+        st.success("Generating note summery and quiz...")
+        # Here you can add the logic to process the images and generate the note summery and quiz based on the selected difficulty level.
+        # Note
+
+        with st.container(border=True):
+            st.subheader("Note Summery")
+            st.text("This is where the generated note summery will be displayed.")
+
+        # Audio transcription
+
+        with st.container(border=True):
+            st.subheader("Audio Transcription")
+            st.text("This is where the generated audio transcription will be displayed.")
+
+        # Quiz generation
+        with st.container(border=True):
+            st.subheader(f"Quiz ({selected_option} Difficulty)")
+            st.text("This is where the generated quiz will be displayed.")
