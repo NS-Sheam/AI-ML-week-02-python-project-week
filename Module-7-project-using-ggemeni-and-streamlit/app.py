@@ -1,5 +1,5 @@
 import streamlit as st
-from api_calling import note_generator
+from api_calling import note_generator, audio_transcription_generator
 from PIL import Image # for image processing if needed
 # Title and description
 st.title("Note summery and quiz generator")
@@ -57,6 +57,9 @@ if pressed:
         with st.container(border=True):
             st.subheader("Audio Transcription")
             st.text("This is where the generated audio transcription will be displayed.")
+            with st.spinner("Generating audio transcription..."):
+                audio_transcription = audio_transcription_generator(note_summery)  # Call the audio transcription generator function with the generated note summery
+                st.audio(audio_transcription, format="audio/mp3")  # Display the generated audio transcription
 
         # Quiz generation
         with st.container(border=True):
