@@ -10,7 +10,7 @@ with st.sidebar:
 
     # image upload section
     st.header("Upload your images")
-    images = uploaded_files = st.file_uploader("Choose images", accept_multiple_files=True, type=["jpg", "jpeg", "png"])
+    images  = st.file_uploader("Choose images", accept_multiple_files=True, type=["jpg", "jpeg", "png"])
 
     if images:
         if len(images) > 3:
