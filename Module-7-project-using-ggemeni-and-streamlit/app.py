@@ -1,5 +1,6 @@
 import streamlit as st
-
+from api_calling import note_generator
+from PIL import Image # for image processing if needed
 # Title and description
 st.title("Note summery and quiz generator")
 st.markdown("Upload upto 3 images to generate note summery and quiz")
@@ -46,6 +47,8 @@ if pressed:
         with st.container(border=True):
             st.subheader("Note Summery")
             st.text("This is where the generated note summery will be displayed.")
+            generated_note = note_generator(images)
+            st.markdown(f"### Gemini API Response:\n{generated_note}")
 
         # Audio transcription
 
