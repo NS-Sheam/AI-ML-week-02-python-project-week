@@ -1,5 +1,5 @@
 import streamlit as st
-from api_calling import note_generator, audio_transcription_generator
+from api_calling import note_generator, audio_transcription_generator, quiz_generator
 from PIL import Image # for image processing if needed
 # Title and description
 st.title("Note summery and quiz generator")
@@ -67,3 +67,6 @@ if pressed:
         with st.container(border=True):
             st.subheader(f"Quiz ({selected_option} Difficulty)")
             st.text("This is where the generated quiz will be displayed.")
+            with st.spinner("Generating quiz..."):
+                quiz = quiz_generator(images, selected_option)  # Call the quiz generator function with the uploaded images and selected difficulty level
+                st.markdown(f"### Gemini API Response:\n{quiz}")  # Display the generated quiz
