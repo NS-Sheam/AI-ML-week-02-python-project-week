@@ -11,6 +11,7 @@ with st.sidebar:
     # image upload section
     st.header("Upload your images")
     images  = st.file_uploader("Choose images", accept_multiple_files=True, type=["jpg", "jpeg", "png"])
+    images = [Image.open(image) for image in images]  # Open each uploaded image using PIL
 
     if images:
         if len(images) > 3:
@@ -47,8 +48,9 @@ if pressed:
         with st.container(border=True):
             st.subheader("Note Summery")
             st.text("This is where the generated note summery will be displayed.")
-            generated_note = note_generator(images)
-            st.markdown(f"### Gemini API Response:\n{generated_note}")
+            with st.spinner("Generating note summery..."): 
+                note_summery = note_generator(images)  # Call the note generator function with the uploaded images
+                st.markdown(f"### Gemini API Response:\n{note_summery}")  # Display the generated note summery
 
         # Audio transcription
 
