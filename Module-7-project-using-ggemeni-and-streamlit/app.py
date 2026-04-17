@@ -58,6 +58,8 @@ if pressed:
             st.subheader("Audio Transcription")
             st.text("This is where the generated audio transcription will be displayed.")
             with st.spinner("Generating audio transcription..."):
+                # clearing the markdown symbols from the note summery to make it suitable for audio transcription
+                note_summery = note_summery.replace("#", "").replace("*", "").replace("_", "").replace("`", "")  # Remove markdown symbols from the note summery
                 audio_transcription = audio_transcription_generator(note_summery)  # Call the audio transcription generator function with the generated note summery
                 st.audio(audio_transcription, format="audio/mp3")  # Display the generated audio transcription
 
